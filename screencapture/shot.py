@@ -10,20 +10,24 @@ camera = dxcam.create()
 # get the game window handle using the window title
 game_title = "Honkai: Star Rail"
 game_window = win32gui.FindWindow(None, game_title)
+# print(game_window)
 
 # get the game window's position and dimensions
-left, top, right, bottom = win32gui.GetClientRect(game_window)
+rect = left, top, right, bottom = win32gui.GetWindowRect(game_window)
+# print(rect)
 width = right - left 
 height = bottom - top
 
 
-# left, top = (1280 - 640) // 2, (1024 - 640) // 2
-# right, bottom = left + 640, top + 640
-# mon = {'top': 100, 'left':200, 'width':1280, 'height':1024}
+# # left, top = (1280 - 640) // 2, (1024 - 640) // 2
+# # right, bottom = left + 640, top + 640
+# # mon = {'top': 100, 'left':200, 'width':1280, 'height':1024}
 
 region = (left, top, width, height)
-# region = (left, top, right, bottom)
-# region = int(mon)
+
+# # print(region)
+# # region = (left, top, right, bottom)
+# # region = int(mon)
 frame = camera.grab(region=region)  # numpy.ndarray of size (640x640x3) -> (HXWXC)
 
 Image.fromarray(frame).show()
