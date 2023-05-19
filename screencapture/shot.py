@@ -1,30 +1,44 @@
 import dxcam
+import win32gui
 import cv2
 import time
 from PIL import Image
 
 camera = dxcam.create()
-# camera.grab()
 
-# frame = camera.grab()
-# Image.fromarray(frame).show()
 
-left, top = (1280 - 640) // 2, (1024 - 640) // 2
-right, bottom = left + 640, top + 640
+# get the game window handle using the window title
+game_title = "Honkai: Star Rail"
+game_window = win32gui.FindWindow(None, game_title)
+
+# get the game window's position and dimensions
+left, top, right, bottom = win32gui.GetClientRect(game_window)
+width = right - left 
+height = bottom - top
+
+
+# left, top = (1280 - 640) // 2, (1024 - 640) // 2
+# right, bottom = left + 640, top + 640
 # mon = {'top': 100, 'left':200, 'width':1280, 'height':1024}
 
-
-region = (left, top, right, bottom)
+region = (left, top, width, height)
+# region = (left, top, right, bottom)
 # region = int(mon)
 frame = camera.grab(region=region)  # numpy.ndarray of size (640x640x3) -> (HXWXC)
 
 Image.fromarray(frame).show()
 
 
-
-
-
-
+target_fps = 60
+camera = dxcam.create(output_idx=0, output_color="BGR")
+camera.start(target_fps=target_fps, video_mode=True)
+writer = cv2.VideoWriter(
+    "video1.mp4", cv2.VideoWriter_fourcc(*"mp4v"), target_fps, (1920, 1080)
+)
+for i in range(600):
+    writer.write(camera.get_latest_frame())
+camera.stop()
+writer.release()
 
 
 
@@ -40,6 +54,9 @@ Image.fromarray(frame).show()
 # for i in range(1000):
 #     image = camera.get_latest_frame()
 # camera.stop()
+
+
+
 
 # video_mode = True
 

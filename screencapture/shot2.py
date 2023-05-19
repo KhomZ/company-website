@@ -1,14 +1,13 @@
 # from mss import mss
-import dxcam
+from dxcam import dxcam
 import cv2
 from PIL import Image
 import numpy as np
 from time import time
 
-mon = {'top': 100, 'left':200, 'width':1280, 'height':1024}
+mon = {'top': 100, 'left':200, 'width':1600, 'height':1024}
 
-# sct = mss()
-sct = dxcam.create()
+sct = mss()
 
 while 1:
     begin_time = time()
