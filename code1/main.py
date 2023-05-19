@@ -11,8 +11,11 @@ min_val, max_val, min_loc, max_loc = cv.minMaxLoc(result)
 print('Best match top left position: %s' % str(max_loc))
 print('Best match confidence: %s' % max_val)
 
-# threshold = 0.8
-# if 
+threshold = 0.8
+if max_val >= threshold:
+    print('found pointer')
+else:
+    print('Pointer not found')
 
 
 # cv.imshow('Result', result)
