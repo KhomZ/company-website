@@ -1,5 +1,6 @@
 import cv2 as cv
 import numpy as np
+import time
 
 # img = cv.imread('honkai_field_right.jpg', cv.IMREAD_UNCHANGED)
 # pointer_img = cv.imread('goal_right.jpg', cv.IMREAD_UNCHANGED)
