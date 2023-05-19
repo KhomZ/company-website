@@ -9,13 +9,24 @@ camera = dxcam.create()
 # frame = camera.grab()
 # Image.fromarray(frame).show()
 
-# left, top = (1920 - 640) // 2, (1080 - 640) // 2
-# right, bottom = left + 640, top + 640
+left, top = (1280 - 640) // 2, (1024 - 640) // 2
+right, bottom = left + 640, top + 640
+# mon = {'top': 100, 'left':200, 'width':1280, 'height':1024}
 
-# region = (left, top, right, bottom)
-# frame = camera.grab(region=region)  # numpy.ndarray of size (640x640x3) -> (HXWXC)
 
-# Image.fromarray(frame).show()
+region = (left, top, right, bottom)
+# region = int(mon)
+frame = camera.grab(region=region)  # numpy.ndarray of size (640x640x3) -> (HXWXC)
+
+Image.fromarray(frame).show()
+
+
+
+
+
+
+
+
 
 # camera.start(region=(left, top, right, bottom))
 # camera.is_capturing   # true
@@ -83,8 +94,8 @@ camera = dxcam.create()
 # end_time = time.perf_counter() - start_time
 # print(f"{title}: {fps/end_time}")
 
-camera = dxcam.create(output_idx=0)
-camera.start(target_fps=60)
-for i in range(1000):
-    image = camera.get_latest_frame()
-camera.stop()
+# camera = dxcam.create(output_idx=0)
+# camera.start(target_fps=60)
+# for i in range(1000):
+#     image = camera.get_latest_frame()
+# camera.stop()
