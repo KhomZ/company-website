@@ -1,2 +1,4 @@
 autopy
 pynput
+Pillow
+pyautogui
